@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to the Museum</title>
+    <title>Nigerian Air Force Museum and Archives</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
@@ -14,7 +14,7 @@
       </video>
     </div>
     <div class="" style="text-align: center">
-      <h1>Welcome to the Museum</h1>
+      <h1>Nigerian Air Force Museum and Archives</h1>
       <!-- Book -->
       <div class="flipbook-viewport">
         <div class="container">
@@ -63,8 +63,71 @@
                 </text>
               </svg>
             </div>
+            <!-- <div class="hard"></div> -->
+            <div class="hard" style="background-color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+                <!-- <rect width="100%" height="100%" fill="#83c5d6" /> -->
+                <!-- <rect
+                  x="20"
+                  y="20"
+                  width="560"
+                  height="760"
+                  fill="#ffffff"
+                  stroke="#333333"
+                  stroke-width="4"
+                /> -->
+                <g id="lineGroup"></g>
+                <g id="imageGroup"></g>
+          
+                <script>
+                  const imagePaths = [
+                    "static/images/name.png",
+                    "static/images/name.png",
+                    "static/images/name.png",
+                    "static/images/name.png",
+                    "static/images/name.png",
+                  ];
+          
+                  const lineGroup = document.getElementById("lineGroup");
+                  const imageGroup = document.getElementById("imageGroup");
+          
+                  const imageWidth = 150;
+                  const imageHeight = 100;
+                  const imageMargin = 20;
+          
+                  const lineY = 20 + imageHeight + imageMargin / 2;
+                  const lineX1 = 40;
+                  const lineX2 = 560;
+          
+                  for (let i = 0; i < imagePaths.length; i++) {
+                    const image = document.createElementNS(
+                      "http://www.w3.org/2000/svg",
+                      "image"
+                    );
+                    image.setAttribute("x", 80);
+                    image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
+                    image.setAttribute("width", imageWidth);
+                    image.setAttribute("height", imageHeight);
+                    image.setAttribute("href", imagePaths[i]);
+                    image.setAttribute("alt", "Image " + (i + 1));
+                    imageGroup.appendChild(image);
+          
+                    const line = document.createElementNS(
+                      "http://www.w3.org/2000/svg",
+                      "line"
+                    );
+                    line.setAttribute("x1", lineX1);
+                    line.setAttribute("y1", lineY + i * (imageHeight + imageMargin));
+                    line.setAttribute("x2", lineX2);
+                    line.setAttribute("y2", lineY + i * (imageHeight + imageMargin));
+                    line.setAttribute("stroke", "#83c5d6");
+                    line.setAttribute("stroke-width", "2");
+                    lineGroup.appendChild(line);
+                  }
+                </script>
+              </svg>
+              </div>
             <div class="hard"></div>
-            <div>Page 2</div>
             <div class="hard"></div>
           </div>
         </div>
