@@ -27,7 +27,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 @app.get('/')
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 @app.get('/guests')
 def get_guests():

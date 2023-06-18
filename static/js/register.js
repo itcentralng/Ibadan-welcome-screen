@@ -172,8 +172,6 @@ for (var i = 0; i < numGroups; i++) {
 const book = document.querySelector('.flipbook')
 let cover = `
 <div class="hard">
-</div>
-<div class="hard">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
     <rect width="100%" height="100%" fill="#83c5d6" />
     <rect
