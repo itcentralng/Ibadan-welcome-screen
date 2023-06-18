@@ -2,83 +2,7 @@
 <html>
   <head>
     <title>Welcome to the Museum</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      .video-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: -1;
-      }
-
-      .video-container video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        min-width: 100%;
-        min-height: 100%;
-      }
-
-      .content {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 40px;
-      }
-
-      h1 {
-        color: white;
-      }
-
-      form {
-        margin: 20px auto;
-      }
-
-      form label {
-        color: white;
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      form input[type="text"] {
-        padding: 5px;
-        width: 200px;
-      }
-
-      form button {
-        padding: 8px 20px;
-        background-color: #007bff;
-        border: none;
-        color: white;
-        cursor: pointer;
-      }
-
-      #guest-list {
-        color: white;
-        margin-top: 40px;
-      }
-
-      #guest-list h2 {
-        margin-bottom: 10px;
-      }
-
-      #guests {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      #guests li {
-        margin-bottom: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="../static/css/register.css" />
   </head>
   <body>
     <div class="video-container">
@@ -90,10 +14,66 @@
       </video>
     </div>
     <!-- BOOK -->
-    <!-- <div class="" style="text-align: center" id="book">
-      <h1>Nigerian Air Force Museum and Archives</h1>
+    <div class="" style="text-align: center" id="book">
+      <!-- <h1>Nigerian Air Force Museum and Archives</h1> -->
       <div class="flipbook-viewport">
         <div class="container">
+          <div class="stylus-container">
+            <div class="pen-colors">
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: blue;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: red;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: black;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+              "
+            >
+              <canvas
+                width="1000"
+                height="600"
+                id="canvas"
+                style="
+                  background-color: white;
+                  box-shadow: 0rem 0rem 4.5rem -0.6rem #676161;
+                  border-radius: 20px;
+                "
+              ></canvas>
+
+              <button style="width: fit-content">Save</button>
+              <!-- <button style="width: fit-content">Reset</button> -->
+            </div>
+          </div>
           <div class="flipbook">
             <div class="coverPage hard">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
@@ -139,112 +119,55 @@
                 </text>
               </svg>
             </div>
-            <div class="hard" style="background-color: white;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+            <div class="hard" style="background-color: white">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
                 <g id="lineGroup"></g>
                 <g id="imageGroup"></g>
-          
+
                 <script>
-                  const imagePaths = [
-                    "static/images/name.png",
-                    "static/images/name.png",
-                    "static/images/name.png",
-                    "static/images/name.png",
-                    "static/images/name.png",
-                  ];
-          
-                  const lineGroup = document.getElementById("lineGroup");
-                  const imageGroup = document.getElementById("imageGroup");
-          
-                  const imageWidth = 150;
-                  const imageHeight = 100;
-                  const imageMargin = 20;
-          
-                  const lineY = 20 + imageHeight + imageMargin / 2;
-                  const lineX1 = 40;
-                  const lineX2 = 560;
-          
-                  for (let i = 0; i < imagePaths.length; i++) {
-                    const image = document.createElementNS(
-                      "http://www.w3.org/2000/svg",
-                      "image"
-                    );
-                    image.setAttribute("x", 80);
-                    image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
-                    image.setAttribute("width", imageWidth);
-                    image.setAttribute("height", imageHeight);
-                    image.setAttribute("href", imagePaths[i]);
-                    image.setAttribute("alt", "Image " + (i + 1));
-                    imageGroup.appendChild(image);
-          
-                    const line = document.createElementNS(
-                      "http://www.w3.org/2000/svg",
-                      "line"
-                    );
-                    line.setAttribute("x1", lineX1);
-                    line.setAttribute("y1", lineY + i * (imageHeight + imageMargin));
-                    line.setAttribute("x2", lineX2);
-                    line.setAttribute("y2", lineY + i * (imageHeight + imageMargin));
-                    line.setAttribute("stroke", "#83c5d6");
-                    line.setAttribute("stroke-width", "2");
-                    lineGroup.appendChild(line);
-                  }
+                  const imagePaths = [ "static/images/name.png",
+                  "static/images/name.png", "static/images/name.png",
+                  "static/images/name.png", "static/images/name.png", ]; const
+                  lineGroup = document.getElementById("lineGroup"); const
+                  imageGroup = document.getElementById("imageGroup"); const
+                  imageWidth = 150; const imageHeight = 100; const imageMargin =
+                  20; const lineY = 20 + imageHeight + imageMargin / 2; const
+                  lineX1 = 40; const lineX2 = 560; for (let i = 0; i <
+                  imagePaths.length; i++) { const image =
+                  document.createElementNS( "http://www.w3.org/2000/svg",
+                  "image" ); image.setAttribute("x", 80);
+                  image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
+                  image.setAttribute("width", imageWidth);
+                  image.setAttribute("height", imageHeight);
+                  image.setAttribute("href", imagePaths[i]);
+                  image.setAttribute("alt", "Image " + (i + 1));
+                  imageGroup.appendChild(image); const line =
+                  document.createElementNS( "http://www.w3.org/2000/svg", "line"
+                  ); line.setAttribute("x1", lineX1); line.setAttribute("y1",
+                  lineY + i * (imageHeight + imageMargin));
+                  line.setAttribute("x2", lineX2); line.setAttribute("y2", lineY
+                  + i * (imageHeight + imageMargin));
+                  line.setAttribute("stroke", "#83c5d6");
+                  line.setAttribute("stroke-width", "2");
+                  lineGroup.appendChild(line); }
                 </script>
               </svg>
-              </div>
+            </div>
             <div class="hard"></div>
             <div class="hard"></div>
           </div>
         </div>
       </div>
-    </div> -->
-    <!-- BOOK -->
-
-    <!-- STYLUS -->
-
-    <div>
-      <canvas width="500" height="300" style="background-color: white"></canvas>
-      <button>Save</button>
     </div>
 
-    <!-- STYLYS -->
+    <!-- <div>
+    </div> -->
 
     <script src="script.js"></script>
+    <script src="../static/js/register.js"></script>
   </body>
 </html>
 
-<script>
-  // Store previous guests in an array
-  let guests = [];
-
-  // Function to update the guest list on the page
-  function updateGuestList() {
-    const guestList = document.getElementById("guests");
-    guestList.innerHTML = "";
-
-    guests.forEach((guest) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = guest;
-      guestList.appendChild(listItem);
-    });
-  }
-
-  // Handle form submission
-  const form = document.getElementById("registration-form");
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const nameInput = document.getElementById("name");
-    const name = nameInput.value;
-
-    // Add the guest to the array and update the list
-    guests.push(name);
-    updateGuestList();
-
-    // Clear the input field
-    nameInput.value = "";
-  });
-</script>
 <!-- TurnJS -->
 <script
   type="text/javascript"
@@ -291,55 +214,5 @@
     both: ["static/js/turnjs4/samples/basic/css/basic.css"],
     complete: loadApp,
   });
-</script>
-<script>
-  // Get the canvas element and its context
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-
-  // Variables to track mouse position and drawing state
-  let isDrawing = false;
-  let lastX = 0;
-  let lastY = 0;
-
-  // Event listeners
-  canvas.addEventListener("mousedown", startDrawing);
-  canvas.addEventListener("mousemove", draw);
-  canvas.addEventListener("mouseup", stopDrawing);
-  canvas.addEventListener("mouseout", stopDrawing);
-
-  // Function to start drawing
-  function startDrawing(e) {
-    isDrawing = true;
-    [lastX, lastY] = [e.offsetX, e.offsetY];
-  }
-
-  // Function to draw
-  function draw(e) {
-    if (!isDrawing) return;
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.stroke();
-    [lastX, lastY] = [e.offsetX, e.offsetY];
-  }
-
-  // Function to stop drawing
-  function stopDrawing() {
-    isDrawing = false;
-  }
-
-  // // Function to save the canvas as an image
-  // function saveCanvas() {
-  //   const image = canvas.toDataURL("image/png");
-  //   const link = document.createElement("a");
-  //   link.href = image;
-  //   link.download = "canvas.png";
-  //   link.click();
-  // }
-
-  // // Attach click event listener to the save button
-  // const saveButton = document.getElementById("saveButton");
-  // saveButton.addEventListener("click", saveCanvas);
 </script>
 <!-- TurnJS -->
