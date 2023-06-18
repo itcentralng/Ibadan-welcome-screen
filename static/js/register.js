@@ -18,54 +18,76 @@ const showBook = ()=>{
   canvasContainer.style.display = 'none';
 }
 
-const save = ()=>{
+const saveCanvas = async () => {
+  const imageData = canvas.toDataURL(); // Get the data URL of the canvas image
+
+  try {
+    // Create a new FormData object
+    const formData = new FormData();
+    
+    // Create a Blob object from the data URL with MIME type "image/png"
+    const imageBlob = await (await fetch(imageData)).blob();
+    
+    // Append the image blob to the form data with a custom filename
+    formData.append('image', imageBlob, 'image.png');
+
+    // Send the form data to the API
+    const response = await fetch('http://127.0.0.1:5000/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    // Handle the response from the API
+    if (response.ok) {
+      const data = await response.json();
+      // console.log('Image successfully uploaded:', data);
+    } else {
+      // console.log('Error uploading image:', response.status);
+    }
+  } catch (error) {
+    console.log('Error:', error);
+  }
+
+  loadBook();
+  showBook();
+  clearCanvas();
+};
+
+
+// Function to clear the canvas
+const clearCanvas = () => {
+  // Get the canvas element and its context
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Function to clear the canvas
+const cancelCanvas = () => {
+  clearCanvas();
   showBook();
 }
 
 // Load Book
+const loadBook = async ()=>{
 
-const items = [
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-  "static/images/name.png",
-];
+let items = [];
+
+const fetchImageUrls = async ()=>{
+  try {
+    const response = await fetch('http://127.0.0.1:5000/guests');
+    const data = await response.json();
+    items = data.image_urls;
+    // console.log(items)
+
+    // Do something with the imageUrls array
+    // console.log(imageUrls);
+  } catch (error) {
+    console.error('Error fetching image URLs:', error);
+  }
+}
+
+await fetchImageUrls();
 
 var groupSize = 5; // Number of items in each group
 var numGroups = Math.ceil(items.length / groupSize); // Calculate the total number of groups
@@ -148,7 +170,10 @@ for (var i = 0; i < numGroups; i++) {
 
 }
 const book = document.querySelector('.flipbook')
-let cover = `<div class="hard">
+let cover = `
+<div class="hard">
+</div>
+<div class="hard">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
     <rect width="100%" height="100%" fill="#83c5d6" />
     <rect
@@ -171,11 +196,14 @@ let cover = `<div class="hard">
   </svg>
 </div>`
 
+// book.innerHTML += cover
 book.innerHTML += cover
+}
 
 // Canvas
 
-let strokeColor = "";
+const loadCanvas = ()=>{
+  let strokeColor = "";
 const pens = document.querySelectorAll(".pen-color");
 pens.forEach((pen) => {
   pen.addEventListener("click", () => {
@@ -216,6 +244,7 @@ function draw(e) {
   ctx.lineTo(e.offsetX, e.offsetY);
   ctx.stroke();
   ctx.strokeStyle = strokeColor;
+  ctx.lineWidth = 4;
   [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
@@ -224,46 +253,7 @@ function stopDrawing() {
   isDrawing = false;
 }
 
-// // Function to save the canvas as an image
-// function saveCanvas() {
-//   const image = canvas.toDataURL("image/png");
-//   const link = document.createElement("a");
-//   link.href = image;
-//   link.download = "canvas.png";
-//   link.click();
-// }
-
-// // Attach click event listener to the save button
-// const saveButton = document.getElementById("saveButton");
-// saveButton.addEventListener("click", saveCanvas);
-
-// Store previous guests in an array
-let guests = [];
-
-// Function to update the guest list on the page
-function updateGuestList() {
-  const guestList = document.getElementById("guests");
-  guestList.innerHTML = "";
-
-  guests.forEach((guest) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = guest;
-    guestList.appendChild(listItem);
-  });
 }
 
-// Handle form submission
-const form = document.getElementById("registration-form");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const nameInput = document.getElementById("name");
-  const name = nameInput.value;
-
-  // Add the guest to the array and update the list
-  guests.push(name);
-  updateGuestList();
-
-  // Clear the input field
-  nameInput.value = "";
-});
+loadBook();
+loadCanvas();
