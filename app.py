@@ -18,6 +18,7 @@ db = SQLAlchemy(app)
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image_url = db.Column(db.String)
+    date = db.Column(db.String)
 
 with app.app_context():
     db.create_all()
@@ -32,7 +33,7 @@ def index():
 @app.get('/guests')
 def get_guests():
     guests = Guest.query.order_by(desc(Guest.id)).all()  # Retrieve all guest records from the database
-    image_urls = [guest.image_url for guest in guests]  # Extract the image URLs
+    image_urls = [{'url':guest.image_url, 'date':guest.date} for guest in guests]  # Extract the image URLs
     return {'image_urls': image_urls}
 
 
@@ -43,6 +44,7 @@ def add_guest():
         return {'error': 'No image found in the request'}, 400
 
     image = request.files['image']
+    date = request.form['date']
 
     # Check if the file has an allowed extension
     if not allowed_file(image.filename):
@@ -56,7 +58,7 @@ def add_guest():
     image.save(image_path)
 
     # Create a new guest record in the database
-    guest = Guest(image_url=image_path)
+    guest = Guest(image_url=image_path, date=date)
     db.session.add(guest)
     db.session.commit()
 

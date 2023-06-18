@@ -30,6 +30,15 @@ const saveCanvas = async () => {
     
     // Append the image blob to the form data with a custom filename
     formData.append('image', imageBlob, 'image.png');
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
+    formData.append('date', formattedDate);
+
 
     // Send the form data to the API
     const response = await fetch('http://127.0.0.1:5000/upload', {
@@ -48,10 +57,17 @@ const saveCanvas = async () => {
     console.log('Error:', error);
   }
 
-  loadBook();
+  // loadBook();
   showBook();
   clearCanvas();
+  doAfterSave();
 };
+
+const doAfterSave = () => {
+  location.reload();
+};
+
+
 
 
 // Function to clear the canvas
@@ -150,9 +166,16 @@ for (var i = 0; i < numGroups; i++) {
     image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
     image.setAttribute("width", imageWidth);
     image.setAttribute("height", imageHeight);
-    image.setAttribute("href", item);
+    image.setAttribute("href", item.url);
     image.setAttribute("alt", "Image " + (i + 1));
     imageGroup.appendChild(image);
+
+    const dateText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    dateText.setAttribute("x", 320);
+    dateText.setAttribute("y", 90 + i * (imageHeight + imageMargin));
+    dateText.setAttribute("fill", "#000");
+    dateText.textContent = item.date;
+    imageGroup.appendChild(dateText);
 
     const line = document.createElementNS(
       "http://www.w3.org/2000/svg",
