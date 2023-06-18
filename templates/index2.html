@@ -1,8 +1,84 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nigerian Air Force Museum and Archives</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Welcome to the Museum</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .video-container video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: white;
+      }
+
+      form {
+        margin: 20px auto;
+      }
+
+      form label {
+        color: white;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      form input[type="text"] {
+        padding: 5px;
+        width: 200px;
+      }
+
+      form button {
+        padding: 8px 20px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      #guest-list {
+        color: white;
+        margin-top: 40px;
+      }
+
+      #guest-list h2 {
+        margin-bottom: 10px;
+      }
+
+      #guests {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      #guests li {
+        margin-bottom: 5px;
+      }
+    </style>
   </head>
   <body>
     <div class="video-container">
@@ -126,103 +202,16 @@
 
     <!-- STYLUS -->
 
-    <div class="" style="text-align: center" id="canvas">
-        <h1>Please write your name</h1>
-        <canvas id="canvas" width="500" height="300"></canvas>
-        <div>
-          <div style="display: flex; flex-direction: column; align-items: flex-end">
-            <div style="background-color: black; width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px"></div>
-            <div style="background-color: blue; width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px"></div>
-            <div style="background-color: green; width: 50px; height: 50px; border-radius: 50%; margin-bottom: 10px"></div>
-          </div>
-        </div>
-        <button style="margin-top: 20px;">Save</button>
-      </div>
-      
+    <div>
+      <canvas width="500" height="300" style="background-color: white"></canvas>
+      <button>Save</button>
+    </div>
 
     <!-- STYLYS -->
 
     <script src="script.js"></script>
   </body>
 </html>
-
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  .video-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-  }
-
-  .video-container video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-  }
-
-  .content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px;
-  }
-
-  h1 {
-    color: white;
-  }
-
-  form {
-    margin: 20px auto;
-  }
-
-  form label {
-    color: white;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  form input[type="text"] {
-    padding: 5px;
-    width: 200px;
-  }
-
-  form button {
-    padding: 8px 20px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-
-  #guest-list {
-    color: white;
-    margin-top: 40px;
-  }
-
-  #guest-list h2 {
-    margin-bottom: 10px;
-  }
-
-  #guests {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  #guests li {
-    margin-bottom: 5px;
-  }
-</style>
 
 <script>
   // Store previous guests in an array
@@ -302,5 +291,55 @@
     both: ["static/js/turnjs4/samples/basic/css/basic.css"],
     complete: loadApp,
   });
+</script>
+<script>
+  // Get the canvas element and its context
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  // Variables to track mouse position and drawing state
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  // Event listeners
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseout", stopDrawing);
+
+  // Function to start drawing
+  function startDrawing(e) {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+
+  // Function to draw
+  function draw(e) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+
+  // Function to stop drawing
+  function stopDrawing() {
+    isDrawing = false;
+  }
+
+  // // Function to save the canvas as an image
+  // function saveCanvas() {
+  //   const image = canvas.toDataURL("image/png");
+  //   const link = document.createElement("a");
+  //   link.href = image;
+  //   link.download = "canvas.png";
+  //   link.click();
+  // }
+
+  // // Attach click event listener to the save button
+  // const saveButton = document.getElementById("saveButton");
+  // saveButton.addEventListener("click", saveCanvas);
 </script>
 <!-- TurnJS -->
