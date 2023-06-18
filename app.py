@@ -22,7 +22,7 @@ class Guest(db.Model):
 with app.app_context():
     db.create_all()
 
-UPLOAD_FOLDER = 'static/images'
+UPLOAD_FOLDER = 'static/images/guests'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 @app.get('/')
