@@ -20,11 +20,11 @@ body {
 .flipbook {
   position: static !important;
   margin: auto !important;
-  display: none !important;
+  /* display: flex !important; */
 }
 .stylus-container {
   width: fit-content;
-  display: flex;
+  display: none;
   align-items: center;
   gap: 3rem;
   /* box-shadow: 0rem 0rem 4.5rem -0.6rem #00000021; */
@@ -40,6 +40,22 @@ body {
   transition: all ease-in-out 0.8s;
 }
 .stylus-container button:hover {
+  box-shadow: 0rem 0rem 4.5rem -0.6rem white;
+  scale: 1.1;
+  transition: all ease-in-out 0.8s;
+}
+
+#signIn {
+  padding: 20px 55px;
+  background-color: #007bff;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  transition: all ease-in-out 0.8s;
+}
+#signIn:hover {
   box-shadow: 0rem 0rem 4.5rem -0.6rem white;
   scale: 1.1;
   transition: all ease-in-out 0.8s;

@@ -1,11 +1,189 @@
+
+// Show Canvas Function
+const showCanvas = ()=>{
+  const book = document.querySelector('.flipbook')
+  const colors = document.querySelector('#colors')
+  const canvasContainer = document.querySelector('#canvasContainer')
+  book.style.display = 'none';
+  colors.style.display = 'none';
+  canvasContainer.style.display = 'flex';
+}
+// Show Book Function
+const showBook = ()=>{
+  const book = document.querySelector('.flipbook')
+  const colors = document.querySelector('#colors')
+  const canvasContainer = document.querySelector('#canvasContainer');
+  book.style.display = 'flex';
+  colors.style.display = 'flex';
+  canvasContainer.style.display = 'none';
+}
+
+const save = ()=>{
+  showBook();
+}
+
+// Load Book
+
+const items = [
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+  "static/images/name.png",
+];
+
+var groupSize = 5; // Number of items in each group
+var numGroups = Math.ceil(items.length / groupSize); // Calculate the total number of groups
+
+for (var i = 0; i < numGroups; i++) {
+  var start = i * groupSize; // Calculate the start index of each group
+  var end = start + groupSize; // Calculate the end index of each group
+  var groupItems = items.slice(start, end); // Get the items for the current group
+
+  // Set Field
+  // Create the <div> element
+  var divElement = document.createElement('div');
+  divElement.className = 'hard';
+  divElement.style.backgroundColor = 'white';
+    
+  // Create the <svg> element
+  var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  svgElement.setAttribute('viewBox', '0 0 600 800');
+  
+  // Create the <g> elements
+  var lineGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  lineGroupElement.id = 'lineGroup'+i;
+
+  var imageGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  imageGroupElement.id = 'imageGroup'+i;
+  
+  // Append the <g> elements to the <svg> element
+  svgElement.appendChild(lineGroupElement);
+  svgElement.appendChild(imageGroupElement);
+  
+  // Append the <svg> element to the <div> element
+  divElement.appendChild(svgElement);
+
+  // Append the <div> element to the document body or any desired parent element
+    
+  const book = document.querySelector('.flipbook')
+    
+  book.appendChild(divElement);
+
+  const lineGroup = document.getElementById("lineGroup"+i);
+  const imageGroup = document.getElementById("imageGroup"+i);
+
+  const imageWidth = 150;
+  const imageHeight = 100;
+  const imageMargin = 20;
+
+  const lineY = 20 + imageHeight + imageMargin / 2;
+  const lineX1 = 40;
+  const lineX2 = 560;
+  // Process the items in the current group
+  groupItems.forEach(function(item, i) {
+    // Your code to handle each item goes here
+      const image = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "image"
+      );
+  
+    image.setAttribute("x", 80);
+    image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
+    image.setAttribute("width", imageWidth);
+    image.setAttribute("height", imageHeight);
+    image.setAttribute("href", item);
+    image.setAttribute("alt", "Image " + (i + 1));
+    imageGroup.appendChild(image);
+
+    const line = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "line"
+    );
+    line.setAttribute("x1", lineX1);
+    line.setAttribute("y1", lineY + i * (imageHeight + imageMargin));
+    line.setAttribute("x2", lineX2);
+    line.setAttribute("y2", lineY + i * (imageHeight + imageMargin));
+    line.setAttribute("stroke", "#83c5d6");
+    line.setAttribute("stroke-width", "2");
+    lineGroup.appendChild(line);
+    
+  });
+
+}
+const book = document.querySelector('.flipbook')
+let cover = `<div class="hard">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
+    <rect width="100%" height="100%" fill="#83c5d6" />
+    <rect
+      x="20"
+      y="20"
+      width="360"
+      height="560"
+      fill="#ffffff"
+      stroke="#333333"
+      stroke-width="4"
+    />
+    <image
+      x="100"
+      y="80"
+      width="200"
+      height="200"
+      href="static/images/AIR-FORCE-LOGO.png"
+      alt="Logo"
+    />
+  </svg>
+</div>`
+
+book.innerHTML += cover
+
+// Canvas
+
 let strokeColor = "";
 const pens = document.querySelectorAll(".pen-color");
 pens.forEach((pen) => {
   pen.addEventListener("click", () => {
-    console.log("hello");
+    // console.log("hello");
     const backgroundColor = window.getComputedStyle(pen).backgroundColor;
-    console.log(backgroundColor);
+    // console.log(backgroundColor);
     strokeColor = backgroundColor;
+    showCanvas();
   });
 });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to the Museum</title>
+    <title>Welcome to the Nigerian Air Force Museum and Archives</title>
     <link rel="stylesheet" href="../static/css/register.css" />
   </head>
   <body>
@@ -15,10 +15,10 @@
     </div>
     <!-- BOOK -->
     <div class="" style="text-align: center" id="book">
-      <!-- <h1>Nigerian Air Force Museum and Archives</h1> -->
+      <h1>Nigerian Air Force Museum and Archives</h1>
       <div class="flipbook-viewport">
         <div class="container">
-          <div class="stylus-container">
+          <div class="stylus-container" id="canvasContainer">
             <div class="pen-colors">
               <div
                 class="pen-color"
@@ -70,10 +70,44 @@
                 "
               ></canvas>
 
-              <button style="width: fit-content">Save</button>
+              <button style="width: fit-content" id="save" onclick="save()">Save</button>    
               <!-- <button style="width: fit-content">Reset</button> -->
             </div>
           </div>
+          <!-- <button style="width: fit-content" id="signIn">Sign In</button> -->
+          <div class="pen-colors" id="colors" style="padding-left: 200px;">
+            <div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: blue;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+            <div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: red;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+            <div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: black;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+          </div>
+          
           <div class="flipbook">
             <div class="coverPage hard">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
@@ -119,49 +153,10 @@
                 </text>
               </svg>
             </div>
-            <div class="hard" style="background-color: white">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
-                <g id="lineGroup"></g>
-                <g id="imageGroup"></g>
-
-                <script>
-                  const imagePaths = [ "static/images/name.png",
-                  "static/images/name.png", "static/images/name.png",
-                  "static/images/name.png", "static/images/name.png", ]; const
-                  lineGroup = document.getElementById("lineGroup"); const
-                  imageGroup = document.getElementById("imageGroup"); const
-                  imageWidth = 150; const imageHeight = 100; const imageMargin =
-                  20; const lineY = 20 + imageHeight + imageMargin / 2; const
-                  lineX1 = 40; const lineX2 = 560; for (let i = 0; i <
-                  imagePaths.length; i++) { const image =
-                  document.createElementNS( "http://www.w3.org/2000/svg",
-                  "image" ); image.setAttribute("x", 80);
-                  image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
-                  image.setAttribute("width", imageWidth);
-                  image.setAttribute("height", imageHeight);
-                  image.setAttribute("href", imagePaths[i]);
-                  image.setAttribute("alt", "Image " + (i + 1));
-                  imageGroup.appendChild(image); const line =
-                  document.createElementNS( "http://www.w3.org/2000/svg", "line"
-                  ); line.setAttribute("x1", lineX1); line.setAttribute("y1",
-                  lineY + i * (imageHeight + imageMargin));
-                  line.setAttribute("x2", lineX2); line.setAttribute("y2", lineY
-                  + i * (imageHeight + imageMargin));
-                  line.setAttribute("stroke", "#83c5d6");
-                  line.setAttribute("stroke-width", "2");
-                  lineGroup.appendChild(line); }
-                </script>
-              </svg>
-            </div>
-            <div class="hard"></div>
-            <div class="hard"></div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- <div>
-    </div> -->
 
     <script src="script.js"></script>
     <script src="../static/js/register.js"></script>
