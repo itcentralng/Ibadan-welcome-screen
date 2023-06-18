@@ -31,7 +31,7 @@ const saveCanvas = async () => {
     // Append the image blob to the form data with a custom filename
     formData.append('image', imageBlob, 'image.png');
     const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString('en-US', {
+    const formattedDate = currentDate.toLocaleDateString('en-UK', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
