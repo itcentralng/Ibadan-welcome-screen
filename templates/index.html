@@ -88,6 +88,10 @@
                 gap: 20px;
               "
             >
+              
+              <button id="save" onclick="cancelCanvas()" 
+              style="border-radius: 60%;color:white;background:red;padding: .5rem;width: 3.5rem;height: 3.5rem;
+                     font-size: 1.8rem;z-index: 1000;margin-left: 62rem;margin-top: -3.5rem;">x</button>
               <canvas
                 width="1000"
                 height="600"
@@ -96,13 +100,16 @@
                   background-color: white;
                   box-shadow: 0rem 0rem 4.5rem -0.6rem #676161;
                   border-radius: 20px;
+                  margin-top: -3.5rem;
                 "
               ></canvas>
-
+              <h3 style="color: white; border: 1px solid white; background: black;padding: 1rem;z-index: 1000;margin-top: -5.5rem;">
+                Write your name and append your signature                
+              </h3>
               <div class="buttons">
                 <button style="width: fit-content" id="save" onclick="saveCanvas()">Save</button>    
-                <button style="width: fit-content" id="save" onclick="clearCanvas()">Clear</button>    
-                <button style="width: fit-content" id="save" onclick="cancelCanvas()">Cancel</button>
+                <button style="width: fit-content;background-color: coral;" id="save" onclick="clearCanvas()">Clear</button>    
+                <!--<button style="width: fit-content" id="save" onclick="cancelCanvas()">Cancel</button>-->
               </div>
               <!-- <button style="width: fit-content">Reset</button> -->
             </div>

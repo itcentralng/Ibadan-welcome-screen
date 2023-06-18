@@ -132,7 +132,8 @@ for (var i = 0; i < numGroups; i++) {
   imageGroupElement.id = 'imageGroup'+i;
 
   var headerElement = document.createElement('h4');
-  headerElement.textContent = "Visitors Log"
+  headerElement.textContent = "VISITORS LOG";
+  headerElement.style.textDecoration = "underline";
   divElement.appendChild(headerElement);
   
   // Append the <g> elements to the <svg> element
