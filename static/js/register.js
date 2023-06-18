@@ -130,6 +130,10 @@ for (var i = 0; i < numGroups; i++) {
 
   var imageGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   imageGroupElement.id = 'imageGroup'+i;
+
+  var headerElement = document.createElement('h4');
+  headerElement.textContent = "Visitors Log"
+  divElement.appendChild(headerElement);
   
   // Append the <g> elements to the <svg> element
   svgElement.appendChild(lineGroupElement);
