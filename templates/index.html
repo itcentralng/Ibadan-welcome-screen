@@ -3,23 +3,52 @@
   <head>
     <title>Welcome to the Nigerian Air Force Museum and Archives</title>
     <link rel="stylesheet" href="../static/css/register.css" />
+    <link href="{{url_for('static', filename='images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{url_for('static', filename='images/webclip.png')}}" rel="apple-touch-icon">
   </head>
   <body>
     <div class="video-container">
       <video autoplay loop muted>
         <source
-          src="{{url_for('static', filename='videos/background-video-transcode.mp4')}}"
+          src="{{url_for('static', filename='videos/welcome1.mp4')}}"
           type="video/mp4"
         />
       </video>
     </div>
+
+    <!-- HEADER -->
+    <style>
+      .menu{
+        display: flex;
+        flex-direction: row; 
+        align-content: center;
+        justify-content: center;
+        justify-self: center; 
+      }
+
+      .menu-item{ 
+        padding: 1rem; 
+        text-align: center;
+        font-size: 2rem; 
+      }
+    </style>
+
+
+    <div class="title-wrapper menu">
+      <div class="title-logo menu-item"><img src="{{url_for('static', filename='images/NIGERIAN-FLAG-TITLE_1NIGERIAN FLAG TITLE.jpg')}}" loading="lazy" alt="" class="image-airforce-logo"></div>
+      <div class="title_text menu-item" style="color: #fff">
+        <div class="text-block title-text">WELCOME TO THE NAF MUSEUM & ARCHIVES</div> 
+      </div>
+      <div class="title-logo menu-item"><img style="margin-top: -.4rem;" src="{{url_for('static', filename='images/AIR-FORCE-LOGO.jpg')}}" loading="lazy" sizes="55.99609375px" srcset="static/images/AIR-FORCE-LOGO-p-500.png 500w, images/AIR-FORCE-LOGO-p-800.png 800w, images/AIR-FORCE-LOGO-p-1080.png 1080w, images/AIR-FORCE-LOGO.png 1424w" alt="" class="image-2"></div>
+    </div>
+
     <!-- BOOK -->
     <div class="" style="text-align: center" id="book">
-      <h1>Nigerian Air Force Museum and Archives</h1>
+      <!--<h1>Nigerian Air Force Museum and Archives</h1>-->
       <div class="flipbook-viewport">
         <div class="container">
           <div class="stylus-container" id="canvasContainer">
-            <div class="pen-colors">
+            <!--<div class="pen-colors">              
               <div
                 class="pen-color"
                 style="
@@ -50,7 +79,7 @@
                   border-radius: 50%;
                 "
               ></div>
-            </div>
+            </div>-->
             <div
               style="
                 display: flex;
@@ -73,14 +102,29 @@
               <div class="buttons">
                 <button style="width: fit-content" id="save" onclick="saveCanvas()">Save</button>    
                 <button style="width: fit-content" id="save" onclick="clearCanvas()">Clear</button>    
-                <button style="width: fit-content" id="save" onclick="cancelCanvas()">Cancle</button>
+                <button style="width: fit-content" id="save" onclick="cancelCanvas()">Cancel</button>
               </div>
               <!-- <button style="width: fit-content">Reset</button> -->
             </div>
           </div>
           <!-- <button style="width: fit-content" id="signIn">Sign In</button> -->
           <div class="pen-colors" id="colors" style="padding-left: 200px;">
-            <div
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: blue; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: red; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>  
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: black; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   
+            <!--<div
               class="pen-color"
               style="
                 border: 2px solid white;
@@ -109,7 +153,7 @@
                 width: 50px;
                 border-radius: 50%;
               "
-            ></div>
+            ></div>-->
           </div>
           
           <div class="flipbook">
@@ -142,8 +186,8 @@
                   fill="#333333"
                   style="fill: #83c5d6; font-family: 'Helvetica', sans-serif"
                 >
-                  NAF MUSEUM
-                </text>
+                  NAF MUSEUM 
+                </text>                 
                 <text
                   x="200"
                   y="400"
@@ -162,6 +206,7 @@
       </div>
     </div>
 
+    <script src="script.js"></script>
     <script src="../static/js/register.js"></script>
   </body>
 </html>
