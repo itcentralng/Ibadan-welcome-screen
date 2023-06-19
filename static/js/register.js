@@ -198,6 +198,7 @@ for (var i = 0; i < numGroups; i++) {
 
 }
 const book = document.querySelector('.flipbook')
+let extra = book.children.length%2 === 0?`<div class="hard"></div>`:``
 let cover = `
 <div class="hard">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
@@ -223,7 +224,7 @@ let cover = `
 </div>`
 
 // book.innerHTML += cover
-book.innerHTML += cover
+book.innerHTML += extra+cover
 }
 
 // Canvas
