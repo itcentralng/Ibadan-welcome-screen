@@ -84,6 +84,14 @@ const cancelCanvas = () => {
   showBook();
 }
 
+// Toggle eraser mode
+let isEraser = false;
+const toggleEraser = ()=>{  
+  const deleteBtn = document.querySelector(`#delete`);
+  deleteBtn.textContent = !isEraser ? "Resume": "Erase";
+  isEraser = !isEraser; 
+}
+
 // Load Book
 const loadBook = async () => {
 
@@ -228,9 +236,8 @@ const loadBook = async () => {
 }
 
 // Canvas
-
-const loadCanvas = () => {
-  let strokeColor = "";
+let strokeColor = "";
+const loadCanvas = () => {  
   const pens = document.querySelectorAll(".pen-color");
   pens.forEach((pen) => {
     pen.addEventListener("click", () => {
@@ -241,7 +248,7 @@ const loadCanvas = () => {
       showCanvas();
     });
   });
-  
+
   // Get the canvas element and its context
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -256,6 +263,7 @@ const loadCanvas = () => {
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseup", stopDrawing);
   canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("mouseleave", stopDrawing);
 
   canvas.addEventListener("touchstart", startDrawingTouch);
   canvas.addEventListener("touchmove", drawTouch);
@@ -276,15 +284,24 @@ const loadCanvas = () => {
     [lastX, lastY] = [touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop];
   }
 
-  // Function to draw
+  // Function to draw or erase
   function draw(e) {
     e.preventDefault();
     if (!isDrawing) return;
+
+    if (isEraser) {
+      ctx.globalCompositeOperation = "destination-out"; // Set eraser mode
+      ctx.lineWidth = 10; // Set eraser size
+      ctx.strokeStyle = "rgba(0, 0, 0, 1)"; // Set eraser color
+    } else {
+      ctx.globalCompositeOperation = "source-over"; // Set drawing mode
+      ctx.lineWidth = 4; // Set drawing size
+      ctx.strokeStyle = strokeColor; // Set drawing color
+    }
+
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = 4;
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY];
   }
@@ -293,11 +310,20 @@ const loadCanvas = () => {
     e.preventDefault();
     if (!isDrawing) return;
     const touch = e.touches[0];
+
+    if (isEraser) {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.lineWidth = 10;
+      ctx.strokeStyle = "rgba(0, 0, 0, 1)";
+    } else {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = strokeColor;
+    }
+
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop);
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = 4;
     ctx.stroke();
     [lastX, lastY] = [touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop];
   }
@@ -315,6 +341,8 @@ const loadCanvas = () => {
 
 
 }
+
+
 
 loadBook();
 loadCanvas();
