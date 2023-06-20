@@ -1,6 +1,6 @@
 
 // Show Canvas Function
-const showCanvas = ()=>{
+const showCanvas = () => {
   const book = document.querySelector('.flipbook')
   const colors = document.querySelector('#colors')
   const canvasContainer = document.querySelector('#canvasContainer')
@@ -9,7 +9,7 @@ const showCanvas = ()=>{
   canvasContainer.style.display = 'flex';
 }
 // Show Book Function
-const showBook = ()=>{
+const showBook = () => {
   const book = document.querySelector('.flipbook')
   const colors = document.querySelector('#colors')
   const canvasContainer = document.querySelector('#canvasContainer');
@@ -24,10 +24,10 @@ const saveCanvas = async () => {
   try {
     // Create a new FormData object
     const formData = new FormData();
-    
+
     // Create a Blob object from the data URL with MIME type "image/png"
     const imageBlob = await (await fetch(imageData)).blob();
-    
+
     // Append the image blob to the form data with a custom filename
     formData.append('image', imageBlob, 'image.png');
     const currentDate = new Date();
@@ -85,121 +85,121 @@ const cancelCanvas = () => {
 }
 
 // Load Book
-const loadBook = async ()=>{
+const loadBook = async () => {
 
-let items = [];
+  let items = [];
 
-const fetchImageUrls = async ()=>{
-  try {
-    const response = await fetch('http://127.0.0.1:5000/guests');
-    const data = await response.json();
-    items = data.image_urls;
-    // console.log(items)
+  const fetchImageUrls = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/guests');
+      const data = await response.json();
+      items = data.image_urls;
+      // console.log(items)
 
-    // Do something with the imageUrls array
-    // console.log(imageUrls);
-  } catch (error) {
-    console.error('Error fetching image URLs:', error);
+      // Do something with the imageUrls array
+      // console.log(imageUrls);
+    } catch (error) {
+      console.error('Error fetching image URLs:', error);
+    }
   }
-}
 
-await fetchImageUrls();
+  await fetchImageUrls();
 
-var groupSize = 5; // Number of items in each group
-var numGroups = Math.ceil(items.length / groupSize); // Calculate the total number of groups
+  var groupSize = 5; // Number of items in each group
+  var numGroups = Math.ceil(items.length / groupSize); // Calculate the total number of groups
 
-for (var i = 0; i < numGroups; i++) {
-  var start = i * groupSize; // Calculate the start index of each group
-  var end = start + groupSize; // Calculate the end index of each group
-  var groupItems = items.slice(start, end); // Get the items for the current group
+  for (var i = 0; i < numGroups; i++) {
+    var start = i * groupSize; // Calculate the start index of each group
+    var end = start + groupSize; // Calculate the end index of each group
+    var groupItems = items.slice(start, end); // Get the items for the current group
 
-  // Set Field
-  // Create the <div> element
-  var divElement = document.createElement('div');
-  divElement.className = 'hard';
-  divElement.style.backgroundColor = 'white';
-    
-  // Create the <svg> element
-  var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  svgElement.setAttribute('viewBox', '0 0 600 800');
-  
-  // Create the <g> elements
-  var lineGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  lineGroupElement.id = 'lineGroup'+i;
+    // Set Field
+    // Create the <div> element
+    var divElement = document.createElement('div');
+    divElement.className = 'hard';
+    divElement.style.backgroundColor = 'white';
 
-  var imageGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  imageGroupElement.id = 'imageGroup'+i;
+    // Create the <svg> element
+    var svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    svgElement.setAttribute('viewBox', '0 0 600 800');
 
-  var headerElement = document.createElement('h4');
-  headerElement.textContent = "VISITORS LOG";
-  headerElement.style.textDecoration = "underline";
-  divElement.appendChild(headerElement);
-  
-  // Append the <g> elements to the <svg> element
-  svgElement.appendChild(lineGroupElement);
-  svgElement.appendChild(imageGroupElement);
-  
-  // Append the <svg> element to the <div> element
-  divElement.appendChild(svgElement);
+    // Create the <g> elements
+    var lineGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    lineGroupElement.id = 'lineGroup' + i;
 
-  // Append the <div> element to the document body or any desired parent element
-    
-  const book = document.querySelector('.flipbook')
-    
-  book.appendChild(divElement);
+    var imageGroupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    imageGroupElement.id = 'imageGroup' + i;
 
-  const lineGroup = document.getElementById("lineGroup"+i);
-  const imageGroup = document.getElementById("imageGroup"+i);
+    var headerElement = document.createElement('h4');
+    headerElement.textContent = "VISITORS LOG";
+    headerElement.style.textDecoration = "underline";
+    divElement.appendChild(headerElement);
 
-  const imageWidth = 150;
-  const imageHeight = 100;
-  const imageMargin = 20;
+    // Append the <g> elements to the <svg> element
+    svgElement.appendChild(lineGroupElement);
+    svgElement.appendChild(imageGroupElement);
 
-  const lineY = 20 + imageHeight + imageMargin / 2;
-  const lineX1 = 40;
-  const lineX2 = 560;
-  // Process the items in the current group
-  groupItems.forEach(function(item, i) {
-    // Your code to handle each item goes here
+    // Append the <svg> element to the <div> element
+    divElement.appendChild(svgElement);
+
+    // Append the <div> element to the document body or any desired parent element
+
+    const book = document.querySelector('.flipbook')
+
+    book.appendChild(divElement);
+
+    const lineGroup = document.getElementById("lineGroup" + i);
+    const imageGroup = document.getElementById("imageGroup" + i);
+
+    const imageWidth = 150;
+    const imageHeight = 100;
+    const imageMargin = 20;
+
+    const lineY = 20 + imageHeight + imageMargin / 2;
+    const lineX1 = 40;
+    const lineX2 = 560;
+    // Process the items in the current group
+    groupItems.forEach(function (item, i) {
+      // Your code to handle each item goes here
       const image = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "image"
+        "http://www.w3.org/2000/svg",
+        "image"
       );
-  
-    image.setAttribute("x", 80);
-    image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
-    image.setAttribute("width", imageWidth);
-    image.setAttribute("height", imageHeight);
-    image.setAttribute("href", item.url);
-    image.setAttribute("alt", "Image " + (i + 1));
-    imageGroup.appendChild(image);
 
-    const dateText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    dateText.setAttribute("x", 320);
-    dateText.setAttribute("y", 90 + i * (imageHeight + imageMargin));
-    dateText.setAttribute("fill", "#000");
-    dateText.textContent = item.date;
-    imageGroup.appendChild(dateText);
+      image.setAttribute("x", 80);
+      image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
+      image.setAttribute("width", imageWidth);
+      image.setAttribute("height", imageHeight);
+      image.setAttribute("href", item.url);
+      image.setAttribute("alt", "Image " + (i + 1));
+      imageGroup.appendChild(image);
 
-    const line = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
-    line.setAttribute("x1", lineX1);
-    line.setAttribute("y1", lineY + i * (imageHeight + imageMargin));
-    line.setAttribute("x2", lineX2);
-    line.setAttribute("y2", lineY + i * (imageHeight + imageMargin));
-    line.setAttribute("stroke", "#83c5d6");
-    line.setAttribute("stroke-width", "2");
-    lineGroup.appendChild(line);
-    
-  });
+      const dateText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      dateText.setAttribute("x", 320);
+      dateText.setAttribute("y", 90 + i * (imageHeight + imageMargin));
+      dateText.setAttribute("fill", "#000");
+      dateText.textContent = item.date;
+      imageGroup.appendChild(dateText);
 
-}
-const book = document.querySelector('.flipbook')
-let extra = book.children.length%2 === 0?`<div class="hard"></div>`:``
-let cover = `
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      line.setAttribute("x1", lineX1);
+      line.setAttribute("y1", lineY + i * (imageHeight + imageMargin));
+      line.setAttribute("x2", lineX2);
+      line.setAttribute("y2", lineY + i * (imageHeight + imageMargin));
+      line.setAttribute("stroke", "#83c5d6");
+      line.setAttribute("stroke-width", "2");
+      lineGroup.appendChild(line);
+
+    });
+
+  }
+  const book = document.querySelector('.flipbook')
+  let extra = book.children.length % 2 === 0 ? `<div class="hard"></div>` : ``
+  let cover = `
 <div class="hard">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
     <rect width="100%" height="100%" fill="#83c5d6" />
@@ -223,64 +223,104 @@ let cover = `
   </svg>
 </div>`
 
-// book.innerHTML += cover
-book.innerHTML += extra+cover
+  // book.innerHTML += cover
+  book.innerHTML += extra + cover
 }
 
 // Canvas
 
-const loadCanvas = ()=>{
+const loadCanvas = () => {
   let strokeColor = "";
-const pens = document.querySelectorAll(".pen-color");
-pens.forEach((pen) => {
-  pen.addEventListener("click", () => {
-    // console.log("hello");
-    const backgroundColor = window.getComputedStyle(pen).backgroundColor;
-    // console.log(backgroundColor);
-    strokeColor = backgroundColor;
-    showCanvas();
+  const pens = document.querySelectorAll(".pen-color");
+  pens.forEach((pen) => {
+    pen.addEventListener("click", () => {
+      // console.log("hello");
+      const backgroundColor = window.getComputedStyle(pen).backgroundColor;
+      // console.log(backgroundColor);
+      strokeColor = backgroundColor;
+      showCanvas();
+    });
   });
-});
+  
+  // Get the canvas element and its context
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-// Get the canvas element and its context
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+  // Variables to track drawing state
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
 
-// Variables to track mouse position and drawing state
-let isDrawing = false;
-let lastX = 0;
-let lastY = 0;
+  // Event listeners
+  canvas.addEventListener("mousedown", startDrawing);
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+  canvas.addEventListener("mouseout", stopDrawing);
 
-// Event listeners
-canvas.addEventListener("mousedown", startDrawing);
-canvas.addEventListener("mousemove", draw);
-canvas.addEventListener("mouseup", stopDrawing);
-canvas.addEventListener("mouseout", stopDrawing);
+  canvas.addEventListener("touchstart", startDrawingTouch);
+  canvas.addEventListener("touchmove", drawTouch);
+  canvas.addEventListener("touchend", stopDrawingTouch);
+  canvas.addEventListener("touchcancel", stopDrawingTouch);
 
-// Function to start drawing
-function startDrawing(e) {
-  isDrawing = true;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-}
+  // Function to start drawing
+  function startDrawing(e) {
+    e.preventDefault();
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
 
-// Function to draw
-function draw(e) {
-  if (!isDrawing) return;
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.offsetX, e.offsetY);
-  ctx.stroke();
-  ctx.strokeStyle = strokeColor;
-  ctx.lineWidth = 4;
-  [lastX, lastY] = [e.offsetX, e.offsetY];
-}
+  function startDrawingTouch(e) {
+    e.preventDefault();
+    isDrawing = true;
+    const touch = e.touches[0];
+    [lastX, lastY] = [touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop];
+  }
 
-// Function to stop drawing
-function stopDrawing() {
-  isDrawing = false;
-}
+  // Function to draw
+  function draw(e) {
+    e.preventDefault();
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  }
+
+  function drawTouch(e) {
+    e.preventDefault();
+    if (!isDrawing) return;
+    const touch = e.touches[0];
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop);
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = 4;
+    ctx.stroke();
+    [lastX, lastY] = [touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop];
+  }
+
+  // Function to stop drawing
+  function stopDrawing(e) {
+    e.preventDefault();
+    isDrawing = false;
+  }
+
+  function stopDrawingTouch(e) {
+    e.preventDefault();
+    isDrawing = false;
+  }
+
 
 }
 
 loadBook();
 loadCanvas();
+
+
+
+
+
+
