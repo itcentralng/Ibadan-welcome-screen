@@ -12,6 +12,10 @@ app = Flask(__name__)
 
 app.secret_key = "SECRET"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+if __name__ == '__main__':
+    app.run()
 
 db = SQLAlchemy(app)
 
