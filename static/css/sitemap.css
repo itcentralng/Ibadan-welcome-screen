@@ -1,0 +1,21 @@
+.numIndicator {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #008000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ul {
+  width: 300px;
+}
+li {
+  list-style: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}

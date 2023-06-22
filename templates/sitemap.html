@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to the Nigerian Air Force Museum and Archives</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../static/css/register.css" />
+    <link rel="stylesheet" href="../static/css/sitemap.css" />
+    <link
+      href="{{url_for('static', filename='images/favicon.ico')}}"
+      rel="shortcut icon"
+      type="image/x-icon"
+    />
+    <link
+      href="{{url_for('static', filename='images/webclip.png')}}"
+      rel="apple-touch-icon"
+    />
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay loop muted>
+        <source
+          src="{{url_for('static', filename='videos/welcome1.mp4')}}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+    <div
+      id="container"
+      style="
+        position: relative;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+      "
+    >
+      <div
+        style="
+          margin-top: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <object
+          type="image/svg+xml"
+          data="./static/images/sitemap.svg"
+          width="70%"
+        ></object>
+      </div>
+      <div
+        id="image-container"
+        style="
+          background-color: rgba(000, 000, 000, 0.5);
+          height: 100vh;
+          width: 100vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 10000px;
+          left: 0;
+          transition: all ease-in-out 0.5s;
+          z-index: 10;
+        "
+      >
+        <img
+          src="./static/images/back.png"
+          alt=""
+          onclick="handleExitImage()"
+          width="20px"
+          style="
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            border-radius: 50%;
+            padding: 20px;
+            background-color: white;
+          "
+        />
+        <img
+          src=""
+          id="image"
+          style="width: 80%; box-shadow: 0rem 0rem 4.5rem -0.6rem #f1efef"
+          alt=""
+        />
+      </div>
+      <div class="legends">
+        <ul>
+          <li>
+            <div class="numIndicator">1</div>
+            <p>NAF-COLORS</p>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    let imageContainer = document.getElementById("image-container");
+
+    function handleClick(event) {
+      const clickedElement = event.target;
+      const id = clickedElement.getAttribute("id");
+      if (id) {
+        console.log("Clicked element ID:", id);
+        imageContainer.style.top = "0";
+        imageContainer.style.transition = "all ease-in-out 0.8s";
+        let image = document.getElementById("image");
+        image.setAttribute("src", `./static/images/${id}.png`);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const objectTag = document.querySelector("object");
+      objectTag.addEventListener("load", function () {
+        const svgDocument = objectTag.contentDocument;
+        const svgElements = svgDocument.getElementsByTagName("*");
+        for (let i = 0; i < svgElements.length; i++) {
+          svgElements[i].addEventListener("click", handleClick);
+        }
+      });
+    });
+    function handleExitImage() {
+      imageContainer.style.top = "10000px";
+      console.log("hello");
+    }
+  </script>
+</html>
