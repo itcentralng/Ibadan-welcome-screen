@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to the Nigerian Air Force Museum and Archives</title>
+    <link rel="stylesheet" href="../static/css/register.css" />
+    <link href="{{url_for('static', filename='images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
+    <link href="{{url_for('static', filename='images/webclip.png')}}" rel="apple-touch-icon">
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay loop muted>
+        <source
+          src="{{url_for('static', filename='videos/welcome1.mp4')}}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <!-- HEADER -->
+    <style>
+      .menu{
+        display: flex;
+        flex-direction: row; 
+        align-content: center;
+        justify-content: center;
+        justify-self: center; 
+      }
+
+      .menu-item{ 
+        padding: 1rem; 
+        text-align: center;
+        font-size: 2rem; 
+      }
+
+      /*https://codepen.io/alvarotrigo/pen/PoKMyNO*/
+      .animate-character
+      {
+        text-transform: uppercase;
+        background-image: linear-gradient(
+          -225deg,
+          #ffa500 0%,
+          #fff800 29%,
+          #ee82ee 67%,
+          #fff 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 10s linear infinite;
+        display: inline-block; 
+      }
+
+      @keyframes textclip {
+        to {
+          background-position: 200% center;
+        }
+      }
+    </style>
+
+
+    <div class="title-wrapper menu">
+      <div class="title-logo menu-item"><img src="{{url_for('static', filename='images/NIGERIAN-FLAG-TITLE_1NIGERIAN FLAG TITLE.jpg')}}" loading="lazy" alt="" class="image-airforce-logo"></div>
+      <div class="title_text menu-item" style="color: #fff">
+        <div class="text-block title-text animate-character">WELCOME TO THE NAF MUSEUM & ARCHIVES</div> 
+      </div>
+      <div class="title-logo menu-item"><img style="margin-top: -.4rem;" src="{{url_for('static', filename='images/AIR-FORCE-LOGO.jpg')}}" loading="lazy" sizes="55.99609375px" srcset="static/images/AIR-FORCE-LOGO-p-500.png 500w, images/AIR-FORCE-LOGO-p-800.png 800w, images/AIR-FORCE-LOGO-p-1080.png 1080w, images/AIR-FORCE-LOGO.png 1424w" alt="" class="image-2"></div>
+      {%include 'menu.html'%}
+    </div> 
+    <div class="" style="text-align: center" id="book">
+      <!--<h1>Nigerian Air Force Museum and Archives</h1>-->
+      <div class="flipbook-viewport">
+        <div class="container">
+          <div class="stylus-container" id="canvasContainer">
+            <!--<div class="pen-colors">              
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: blue;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: red;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+              <div
+                class="pen-color"
+                style="
+                  border: 2px solid white;
+                  background-color: black;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 50%;
+                "
+              ></div>
+            </div>-->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+              "
+            >
+              
+              <button id="save" onclick="cancelCanvas()" 
+              style="border-radius: 60%;color:white;background:red;padding: .5rem;width: 3.5rem;height: 3.5rem;
+                     font-size: 1.8rem;z-index: 1000;margin-left: 62rem;margin-top: -3.5rem;">x</button>
+              <canvas
+                width="1000"
+                height="600"
+                id="canvas"
+                style="
+                  background-color: white;
+                  box-shadow: 0rem 0rem 4.5rem -0.6rem #676161;
+                  border-radius: 20px;
+                  margin-top: -3.5rem;
+                "
+              ></canvas>
+              <h3 style="color: white; border: 1px solid white; background: black;padding: 1rem;z-index: 1000;margin-top: -5.5rem;">
+                Write your reviews
+              </h3>
+              <div class="buttons">
+                <button style="width: fit-content" id="save" onclick="saveCanvas()">Save</button>    
+                <button style="width: fit-content;background-color: coral;" id="save" onclick="clearCanvas()">Clear</button> 
+                <button style="width: fit-content;background-color: grey;color:white;" id="delete" onclick="toggleEraser()">Erase</button> 
+                <!--<button style="width: fit-content" id="save" onclick="cancelCanvas()">Cancel</button>-->
+              </div>
+              <!-- <button style="width: fit-content">Reset</button> -->
+            </div>
+          </div>
+          <!-- <button style="width: fit-content" id="signIn">Sign In</button> -->
+          <div class="pen-colors" id="colors" style="padding-left: 200px;">
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: blue; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: red; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>  
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: black; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   
+            <!--<div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: blue;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+            <div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: red;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+            <div
+              class="pen-color"
+              style="
+                border: 2px solid white;
+                background-color: black;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+              "
+            ></div>-->
+          </div>
+          
+          <div class="flipbook">
+            <div class="coverPage hard">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 700">
+                <rect width="100%" height="100%" fill="#83c5d6" />
+                <rect
+                  x="20"
+                  y="20"
+                  width="360"
+                  height="560"
+                  fill="#ffffff"
+                  stroke="#333333"
+                  stroke-width="4"
+                />
+                <image
+                  x="100"
+                  y="80"
+                  width="200"
+                  height="200"
+                  href="static/images/AIR-FORCE-LOGO.png"
+                  alt="Logo"
+                />
+                <text
+                  x="200"
+                  y="350"
+                  font-family="Arial"
+                  font-size="36"
+                  text-anchor="middle"
+                  fill="#333333"
+                  style="fill: #83c5d6; font-family: 'Helvetica', sans-serif"
+                >
+                  NAF MUSEUM 
+                </text>                 
+                <text
+                  x="200"
+                  y="400"
+                  font-family="Arial"
+                  font-size="24"
+                  text-anchor="middle"
+                  fill="#777777"
+                  style="fill: #83c5d6; font-family: 'Helvetica', sans-serif"
+                >
+                  Guest Reviews
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+     
+    <script src="script.js"></script>
+    <script src="../static/js/review.js"></script>
+  </body>
+</html>
+
+<!-- TurnJS -->
+<script
+  type="text/javascript"
+  src="{{url_for('static', filename='js/turnjs4/extras/jquery.min.1.7.js')}}"
+></script>
+<script
+  type="text/javascript"
+  src="{{url_for('static', filename='js/turnjs4/extras/modernizr.2.5.3.min.js')}}"
+></script>
+
+<script type="text/javascript">
+  function loadApp() {
+    // Create the flipbook
+
+    $(".flipbook").turn({
+      // Width
+
+      width: 922,
+
+      // Height
+
+      height: 700,
+
+      // Elevation
+
+      elevation: 50,
+
+      // Enable gradients
+
+      gradients: true,
+
+      // Auto center this flipbook
+
+      autoCenter: true,
+    });
+  }
+
+  // Load the HTML4 version if there's not CSS transform
+
+  yepnope({
+    test: Modernizr.csstransforms,
+    yep: ["static/js/turnjs4/lib/turn.js"],
+    nope: ["static/js/turnjs4/lib/turn.html4.min.js"],
+    both: ["static/js/turnjs4/samples/basic/css/basic.css"],
+    complete: loadApp,
+  });
+</script>
+<!-- TurnJS -->

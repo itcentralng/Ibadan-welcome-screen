@@ -18,6 +18,62 @@
     />
   </head>
   <body>
+
+    <!-- HEADER -->
+    <style>
+      .menu{
+        display: flex;
+        flex-direction: row; 
+        align-content: center;
+        justify-content: center;
+        justify-self: center; 
+      }
+
+      .menu-item{ 
+        padding: 1rem; 
+        text-align: center;
+        font-size: 2rem; 
+      }
+
+      /*https://codepen.io/alvarotrigo/pen/PoKMyNO*/
+      .animate-character
+      {
+        text-transform: uppercase;
+        background-image: linear-gradient(
+          -225deg,
+          #ffa500 0%,
+          #fff800 29%,
+          #ee82ee 67%,
+          #fff 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 10s linear infinite;
+        display: inline-block; 
+      }
+
+      @keyframes textclip {
+        to {
+          background-position: 200% center;
+        }
+      }
+    </style>
+
+
+    <div class="title-wrapper menu">
+      <div class="title-logo menu-item"><img src="{{url_for('static', filename='images/NIGERIAN-FLAG-TITLE_1NIGERIAN FLAG TITLE.jpg')}}" loading="lazy" alt="" class="image-airforce-logo"></div>
+      <div class="title_text menu-item" style="color: #fff">
+        <div class="text-block title-text animate-character">WELCOME TO THE NAF MUSEUM & ARCHIVES</div> 
+      </div>
+      <div class="title-logo menu-item"><img style="margin-top: -.4rem;" src="{{url_for('static', filename='images/AIR-FORCE-LOGO.jpg')}}" loading="lazy" sizes="55.99609375px" srcset="static/images/AIR-FORCE-LOGO-p-500.png 500w, images/AIR-FORCE-LOGO-p-800.png 800w, images/AIR-FORCE-LOGO-p-1080.png 1080w, images/AIR-FORCE-LOGO.png 1424w" alt="" class="image-2"></div>
+      {%include 'menu.html'%}
+    </div> 
     <div class="video-container">
       <video autoplay loop muted>
         <source
@@ -87,45 +143,42 @@
         />
       </div>
       <div class="legends">
-        <ul>
-          <li>
-            <div class="numIndicator">1</div>
-            <p>NAF-COLORS</p>
-          </li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+        <ul id="legend" style="z-index: 99999;">
         </ul>
       </div>
     </div>
   </body>
   <script type="text/javascript">
-    let imageContainer = document.getElementById("image-container");
+    
+    // Legends
+    let legend = document.getElementById('legend');
+    let legends = [
+      'Name',
+      'Name Two',
+      'Name Three',
+    ]
+    // legend.innerHTML += `<br/>`
+    legends.map((name, index)=>{
+      // alert(name);
+      legend.innerHTML += `<li class='aLegend' imageId="${index}"> <div class="numIndicator aLegend" imageId="${index}">${index+1}</div> <p class='aLegend' imageId="${index}">${legends[index]}</p> </li>`
+    })
+    
+    // Handle Click
+    document.addEventListener('click', (event) => {
+        var currentElement = event.target;
+        var imageId = currentElement.getAttribute('imageId');
 
-    function handleClick(event) {
-      const clickedElement = event.target;
-      const id = clickedElement.getAttribute("id");
-      if (id) {
-        console.log("Clicked element ID:", id);
-        imageContainer.style.top = "0";
-        imageContainer.style.transition = "all ease-in-out 0.8s";
-        let image = document.getElementById("image");
-        image.setAttribute("src", `./static/images/${id}.png`);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const objectTag = document.querySelector("object");
-      objectTag.addEventListener("load", function () {
-        const svgDocument = objectTag.contentDocument;
-        const svgElements = svgDocument.getElementsByTagName("*");
-        for (let i = 0; i < svgElements.length; i++) {
-          svgElements[i].addEventListener("click", handleClick);
+        if (imageId){
+          let imageContainer = document.getElementById("image-container");
+          imageContainer.style.top = "0";
+          imageContainer.style.transition = "all ease-in-out 0.8s";
+          let image = document.getElementById("image");
+          image.setAttribute("src", `./static/images/sitemap/${imageId}.png`);
         }
-      });
-    });
+    })
+
     function handleExitImage() {
+      let imageContainer = document.getElementById("image-container");
       imageContainer.style.top = "10000px";
       console.log("hello");
     }
