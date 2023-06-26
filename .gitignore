@@ -2,5 +2,5 @@ venv
 __pycache__
 .DS_Store
 *.db
-*.png
-*.jpg
+static/images/guests
+static/images/reviews
