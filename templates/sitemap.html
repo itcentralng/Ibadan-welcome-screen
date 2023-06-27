@@ -143,7 +143,7 @@
         />
       </div>
       <div class="legends">
-        <ul id="legend" style="z-index: 99999;">
+        <ul id="legend" style="padding: 0; list-style: none;">
         </ul>
       </div>
     </div>
@@ -153,14 +153,31 @@
     // Legends
     let legend = document.getElementById('legend');
     let legends = [
-      'Name',
-      'Name Two',
-      'Name Three',
+      'NAF Colours',
+      'Past CAS',
+      'NAF History',
+      'Past CAS',
+      'CAS Profile',
+      'Commands',
+      'Inactive Offices',
+      'Welcome',
+      'Achievements',
+      'Door',
+      'Artifacts',
+      'Civil War',
+      'UN & AU Peace Keeping',
+      'Key Drivers',
+      'NAFOWA',
+      'Operations',
+      'Operations',
+      'Uniforms',
+      'Uniforms',
+      'Flowers',
     ]
-    // legend.innerHTML += `<br/>`
+    legend.innerHTML += `<li> <p>LEGEND</p> </li>`
     legends.map((name, index)=>{
       // alert(name);
-      legend.innerHTML += `<li class='aLegend' imageId="${index}"> <div class="numIndicator aLegend" imageId="${index}">${index+1}</div> <p class='aLegend' imageId="${index}">${legends[index]}</p> </li>`
+      legend.innerHTML += `<li style="text-align: left;" class='aLegend' imageId="${index+1}"> <div class="numIndicator aLegend" imageId="${index+1}">${index+1}</div> <p class='aLegend' imageId="${index+1}">${legends[index]}</p> </li>`
     })
     
     // Handle Click
