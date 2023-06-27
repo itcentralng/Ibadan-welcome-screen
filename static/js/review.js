@@ -113,7 +113,7 @@ const loadBook = async () => {
 
   await fetchImageUrls();
 
-  var groupSize = 5; // Number of items in each group
+  var groupSize = 3; // Number of items in each group
   var numGroups = Math.ceil(items.length / groupSize); // Calculate the total number of groups
 
   for (var i = 0; i < numGroups; i++) {
@@ -160,9 +160,9 @@ const loadBook = async () => {
     const lineGroup = document.getElementById("lineGroup" + i);
     const imageGroup = document.getElementById("imageGroup" + i);
 
-    const imageWidth = 150;
-    const imageHeight = 100;
-    const imageMargin = 20;
+    const imageWidth = 500;
+    const imageHeight = 250;
+    const imageMargin = 10;
 
     const lineY = 20 + imageHeight + imageMargin / 2;
     const lineX1 = 40;
@@ -175,8 +175,8 @@ const loadBook = async () => {
         "image"
       );
 
-      image.setAttribute("x", 80);
-      image.setAttribute("y", 40 + i * (imageHeight + imageMargin));
+      image.setAttribute("x", 20);
+      image.setAttribute("y", 20 + i * (imageHeight + imageMargin));
       image.setAttribute("width", imageWidth);
       image.setAttribute("height", imageHeight);
       image.setAttribute("href", item.url);
@@ -184,8 +184,8 @@ const loadBook = async () => {
       imageGroup.appendChild(image);
 
       const dateText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      dateText.setAttribute("x", 320);
-      dateText.setAttribute("y", 90 + i * (imageHeight + imageMargin));
+      dateText.setAttribute("x", 470);
+      dateText.setAttribute("y", 270 + i * (imageHeight + imageMargin));
       dateText.setAttribute("fill", "#000");
       dateText.textContent = item.date;
       imageGroup.appendChild(dateText);
