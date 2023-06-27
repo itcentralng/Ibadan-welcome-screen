@@ -8,14 +8,16 @@
   align-items: center;
   justify-content: center;
 }
+
 ul {
   width: 300px;
-}
-li {
+  padding: 0;
   list-style: none;
+}
+
+li {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 20px;
 }
