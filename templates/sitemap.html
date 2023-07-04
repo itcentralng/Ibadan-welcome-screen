@@ -142,8 +142,10 @@
           alt=""
         />
       </div>
-      <div class="legends">
-        <ul id="legend" style="padding: 0; list-style: none;">
+      <div class="legends" style="display: flex;">
+        <ul id="legend1" style="padding: 0; list-style: none; flex: 1;">
+        </ul>
+        <ul id="legend2" style="padding: 0; list-style: none; flex: 1;">
         </ul>
       </div>
     </div>
@@ -151,33 +153,46 @@
   <script type="text/javascript">
     
     // Legends
-    let legend = document.getElementById('legend');
-    let legends = [
-      'NAF Colours',
-      'Past CAS',
-      'NAF History',
-      'Past CAS',
+    let legend1 = document.getElementById('legend1');
+    let legend2 = document.getElementById('legend2');
+    let legends1 = [
+      'Welcome Screen',
       'CAS Profile',
-      'Commands',
+      'History of NAF',
+      'NAF Platforms',
+      'Past CAS',
+      'NAF Branches',
+      'NAF Colors',
       'Inactive Offices',
-      'Welcome',
-      'Achievements',
-      'Door',
-      'Artifacts',
-      'Civil War',
-      'UN & AU Peace Keeping',
-      'Key Drivers',
-      'NAFOWA',
-      'Operations',
-      'Operations',
-      'Uniforms',
-      'Uniforms',
-      'Flowers',
+      'NAF Commands',
+      'NAF Gallery',
+      'NAF Memorial',
+      'Statutory Role of NAF',
     ]
-    legend.innerHTML += `<li> <p>LEGEND</p> </li>`
-    legends.map((name, index)=>{
+    let legends2 = [
+      'NAF Meseum Logo',
+      'NAF Key Drivers',
+      'Vision of CAS',
+      'NAF Artifacts',
+      'NAF Uniforms',
+      'Nigerian Civil War',
+      'NAF Mission & Peace Keeping',
+      'NAF Publications',
+      'NAF Acheivements',
+      'Training Institutions',
+      'NAFOWA',
+      'CSR',
+      'Special Military Operation',
+    ]
+    legend1.innerHTML += `<li> <p>LEGEND</p> </li>`
+    legend2.innerHTML += `<li> <p></p> </li>`
+    legends1.map((name, index)=>{
       // alert(name);
-      legend.innerHTML += `<li style="text-align: left;" class='aLegend' imageId="${index+1}"> <div class="numIndicator aLegend" imageId="${index+1}">${index+1}</div> <p class='aLegend' imageId="${index+1}">${legends[index]}</p> </li>`
+      legend1.innerHTML += `<li style="text-align: left;" class='aLegend' imageId="${index+1}"> <div class="numIndicator aLegend" imageId="${index+1}">${index+1}</div> <p class='aLegend' imageId="${index+1}">${legends1[index]}</p> </li>`
+    })
+    legends2.map((name, index)=>{
+      // alert(name);
+      legend2.innerHTML += `<li style="text-align: left;" class='aLegend' imageId="${index+1+legends1.length}"> <div class="numIndicator aLegend" imageId="${index+1+legends1.length}">${index+1+legends1.length}</div> <p class='aLegend' imageId="${index+1+legends1.length}">${legends2[index]}</p> </li>`
     })
     
     // Handle Click
