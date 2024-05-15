@@ -225,7 +225,7 @@ const loadBook = async () => {
       y="80"
       width="200"
       height="200"
-      href="static/images/AIR-FORCE-LOGO.png"
+      href="static/images/nysclogo.svg.png"
       alt="Logo"
     />
   </svg>

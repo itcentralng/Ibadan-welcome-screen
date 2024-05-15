@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to the Nigerian Air Force Museum and Archives</title>
+    <title>WELCOME TO NYSC MUSEUM OF DYNAMIC HISTORY</title>
     <link rel="stylesheet" href="../static/css/register.css" />
     <link href="{{url_for('static', filename='images/favicon.ico')}}" rel="shortcut icon" type="image/x-icon">
     <link href="{{url_for('static', filename='images/webclip.png')}}" rel="apple-touch-icon">
@@ -61,36 +61,3 @@
         }
       }
     </style>
-
-
- 
-    {%include 'header.html'%}
-    {%include 'menu.html'%}
-    <div class="" style="text-align: center" id="book">
-      <!--<h1>Nigerian Air Force Museum and Archives</h1>-->
-      <div class="flipbook-viewport">
-        <div class="container" onclick="toggleMute()">
-          <video autoplay loop muted id="videoPlayer" onclick="toggleMute()">
-            <source src="{{url_for('static', filename='videos/welcome.mp4')}}" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      
-    </div>
-
-    <script>
-      var video = document.getElementById("videoPlayer");
-    
-      function toggleMute() {
-        if (video.muted) {
-          video.muted = false;
-        } else {
-          video.muted = true;
-        }
-      }
-    </script>
-     
-    <script src="script.js"></script>
-  </body>
-</html>
