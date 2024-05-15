@@ -1,9 +1,8 @@
-# naf-museum-welcome
+# nysc-museum-welcome
 
 `Install Python on your machine`
 <br/>
-`RUN pip install Flask`
-`RUN pip install flask-sqlalchemy`
+`RUN pip install flask flask-sqlalchemy`
 <br/>
 `RUN flask run`
 <br/>
