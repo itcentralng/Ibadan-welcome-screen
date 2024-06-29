@@ -37,7 +37,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 @app.get('/')
 def index():
-    return render_template('register.html')
+    return render_template('guest.html')
 
 @app.get('/register')
 def register():

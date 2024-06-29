@@ -1,43 +1,11 @@
     {%include 'head.html'%}
     {%include 'header.html'%}
-    {%include 'menu.html'%}
+    <!-- {%include 'menu.html'%} -->
     <div class="" style="text-align: center" id="book">
       <!--<h1>Nigerian Air Force Museum and Archives</h1>-->
       <div class="flipbook-viewport">
         <div class="container">
           <div class="stylus-container" id="canvasContainer">
-            <!--<div class="pen-colors">              
-              <div
-                class="pen-color"
-                style="
-                  border: 2px solid white;
-                  background-color: blue;
-                  height: 50px;
-                  width: 50px;
-                  border-radius: 50%;
-                "
-              ></div>
-              <div
-                class="pen-color"
-                style="
-                  border: 2px solid white;
-                  background-color: red;
-                  height: 50px;
-                  width: 50px;
-                  border-radius: 50%;
-                "
-              ></div>
-              <div
-                class="pen-color"
-                style="
-                  border: 2px solid white;
-                  background-color: black;
-                  height: 50px;
-                  width: 50px;
-                  border-radius: 50%;
-                "
-              ></div>
-            </div>-->
             <div
               style="
                 display: flex;
@@ -62,7 +30,7 @@
                 "
               ></canvas>
               <h3 style="color: white; border: 1px solid white; background: black;padding: 1rem;z-index: 1000;margin-top: -5.5rem;">
-                Write your reviews
+                Sign your name and your comment
               </h3>
               <div class="buttons">
                 <button style="width: fit-content" id="save" onclick="saveCanvas()">Save</button>    
@@ -85,46 +53,13 @@
             height: 3.5rem;
             width: 3.5rem;
             border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>  
-            <!-- <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
-              background-color: red; opacity: .6;
-              height: 3.5rem;
-              width: 3.5rem;
-              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   -->
+            
             <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
               background-color: black; opacity: .6;
               height: 3.5rem;
               width: 3.5rem;
               border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   
-            <!--<div
-              class="pen-color"
-              style="
-                border: 2px solid white;
-                background-color: blue;
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-              "
-            ></div>
-            <div
-              class="pen-color"
-              style="
-                border: 2px solid white;
-                background-color: red;
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-              "
-            ></div>
-            <div
-              class="pen-color"
-              style="
-                border: 2px solid white;
-                background-color: black;
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-              "
-            ></div>-->
+            
           </div>
           
           <div class="flipbook">
@@ -170,7 +105,7 @@
                   fill="#777777"
                   style="fill: #83c5d6; font-family: 'Helvetica', sans-serif;"
                 >
-                  Guest Reviews
+                  Guest Register
                 </text>
               </svg>
             </div>

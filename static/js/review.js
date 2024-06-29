@@ -140,7 +140,7 @@ const loadBook = async () => {
     imageGroupElement.id = 'imageGroup' + i;
 
     var headerElement = document.createElement('h4');
-    headerElement.textContent = "VISITORS REVIEW";
+    headerElement.textContent = "GUEST REGISTER";
     headerElement.style.textDecoration = "underline";
     divElement.appendChild(headerElement);
 
