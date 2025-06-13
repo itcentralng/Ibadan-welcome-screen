@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
@@ -54,13 +55,21 @@ def sitemap():
 @app.get('/guests')
 def get_guests():
     guests = Guest.query.order_by(desc(Guest.id)).all()  # Retrieve all guest records from the database
-    image_urls = [{'url':guest.image_url, 'date':guest.date} for guest in guests]  # Extract the image URLs
+    image_urls1 = [{'url':guest.image_url, 'date':guest.date} for guest in guests]  # Extract the image URLs
+    reviews = Review.query.order_by(desc(Review.id)).all()  # Retrieve all guest records from the database
+    image_urls2 = [{'url':review.image_url, 'date':review.date} for review in reviews]  # Extract the image URLs
+    image_urls = image_urls1+image_urls2
+    image_urls = sorted(image_urls, key=lambda x: datetime.strptime(x['date'], '%d %B %Y'))
     return {'image_urls': image_urls}
 
 @app.get('/reviews')
 def get_reviews():
+    guests = Guest.query.order_by(desc(Guest.id)).all()  # Retrieve all guest records from the database
+    image_urls1 = [{'url':guest.image_url, 'date':guest.date} for guest in guests]  # Extract the image URLs
     reviews = Review.query.order_by(desc(Review.id)).all()  # Retrieve all guest records from the database
-    image_urls = [{'url':review.image_url, 'date':review.date} for review in reviews]  # Extract the image URLs
+    image_urls2 = [{'url':review.image_url, 'date':review.date} for review in reviews]  # Extract the image URLs
+    image_urls = image_urls1+image_urls2
+    image_urls = sorted(image_urls, key=lambda x: datetime.strptime(x['date'], '%d %B %Y'))
     return {'image_urls': image_urls}
 
 

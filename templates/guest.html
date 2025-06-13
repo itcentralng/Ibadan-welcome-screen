@@ -30,7 +30,7 @@
                 "
               ></canvas>
               <h3 style="color: white; border: 1px solid white; background: black;padding: 1rem;z-index: 1000;margin-top: -5.5rem;">
-                Sign your name and your comment
+                Please append your name, comment and signature
               </h3>
               <div class="buttons">
                 <button style="width: fit-content" id="save" onclick="saveCanvas()">Save</button>    
@@ -59,6 +59,12 @@
               height: 3.5rem;
               width: 3.5rem;
               border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   
+
+            <img  class="pen-color" style="border: 2px solid white; padding: .2rem;
+              background-color: red; opacity: .6;
+              height: 3.5rem;
+              width: 3.5rem;
+              border-radius: 0%;" src="{{url_for('static', filename='images/pen-black.png')}}"/>   
             
           </div>
           
@@ -80,7 +86,7 @@
                   y="80"
                   width="200"
                   height="200"
-                  href="static/images/coa.png"
+                  href="static/images/nysclogo.svg.png"
                   alt="Logo"
                 />
                 <text
@@ -92,9 +98,9 @@
                   fill="#333333"
                   style="fill: #83c5d6; font-family: 'Helvetica', sans-serif"
                 >
-                  <tspan x="200" dy="0">ENUGU STATE</tspan>
-                  <tspan x="200" dy="40">DIGITAL</tspan>
-                  <tspan x="200" dy="40">EXPERIENCE CENTER</tspan>
+                  <tspan x="200" dy="0">NYSC MUSEUM</tspan>
+                  <tspan x="200" dy="40">OF</tspan>
+                  <tspan x="200" dy="40">DYNAMIC HISTORY</tspan>
                 </text>
                 <text
                   x="200"
