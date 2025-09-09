@@ -225,7 +225,7 @@ const loadBook = async () => {
       y="80"
       width="200"
       height="200"
-      href="static/images/coa.png"
+      href="static/images/finance-specialty-logo.png"
       alt="Logo"
     />
   </svg>
