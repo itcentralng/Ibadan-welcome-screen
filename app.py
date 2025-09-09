@@ -50,6 +50,17 @@ def get_guests():
     image_urls = sorted(image_urls, key=lambda x: datetime.strptime(x['date'], '%d %B %Y'))
     return {'image_urls': image_urls}
 
+@app.get('/reviews')
+def get_reviews():
+    guests = Guest.query.order_by(desc(Guest.id)).all()  # Retrieve all guest records from the database
+    image_urls1 = [{'url':guest.image_url, 'date':guest.date} for guest in guests]  # Extract the image URLs
+    reviews = Review.query.order_by(desc(Review.id)).all()  # Retrieve all guest records from the database
+    image_urls2 = [{'url':review.image_url, 'date':review.date} for review in reviews]  # Extract the image URLs
+    image_urls = image_urls1+image_urls2
+    image_urls = sorted(image_urls, key=lambda x: datetime.strptime(x['date'], '%d %B %Y'))
+    return {'image_urls': image_urls}
+
+
 @app.post('/upload')
 def add_guest():
     # Check if the 'image' field is present in the request
@@ -76,6 +87,34 @@ def add_guest():
     db.session.commit()
 
     return {'message': 'Image uploaded and guest record created successfully!'}
+
+@app.post('/upload-review')
+def add_review():
+    # Check if the 'image' field is present in the request
+    if 'image' not in request.files:
+        return {'error': 'No image found in the request'}, 400
+
+    image = request.files['image']
+    date = request.form['date']
+
+    # Check if the file has an allowed extension
+    if not allowed_file(image.filename):
+        return {'error': 'Invalid file extension'}, 400
+
+    # Generate a random filename
+    extension = image.filename.rsplit('.', 1)[1].lower()
+    random_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    filename = f"{random_name}.{extension}"
+    image_path = os.path.join(UPLOAD_FOLDER, filename)
+    image.save(image_path)
+
+    # Create a new review record in the database
+    review = Review(image_url=image_path, date=date)
+    db.session.add(review)
+    db.session.commit()
+
+    return {'message': 'Image uploaded and review created successfully!'}
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
